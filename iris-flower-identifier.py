@@ -1,4 +1,6 @@
 # Load libraries 
+import os.path
+
 from pandas import read_csv
 from pandas.plotting import scatter_matrix
 from matplotlib import pyplot
@@ -15,9 +17,16 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
-# Load dataset
-url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
-names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-dataset = read_csv(url, names=names)
+
+# load dataset or download and save locally
+if os.path.isfile('iris.csv'):
+  dataset = read_csv('iris.csv',index_col=0)
+  print ("File loaded locally")
+else:
+  url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
+  names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+  dataset = read_csv(url, names=names)
+  dataset.to_csv('iris.csv')
+  print("File downloaded and stored in iris.csv")
 
 print(dataset)
