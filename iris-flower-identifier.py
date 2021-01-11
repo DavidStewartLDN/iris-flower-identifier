@@ -29,4 +29,15 @@ else:
   dataset.to_csv('iris.csv')
   print("File downloaded and stored in iris.csv")
 
-print(dataset)
+# We can view the shape of the data using the dataset.shape command
+rows, columns = dataset.shape
+print('The data is of shape:', dataset.shape)
+print('Therefore the data has {} rows and {} columns.'.format(rows, columns))
+
+# We can look at the top of the dataset using the .head(Number_of_rows) method
+print('Head of data or top X number of rows')
+print(dataset.head(20))
+
+# We can also view a a Satistical summary of the data using the .describe() method
+print("Statistical summary of the data using the desrcibe method of the dataframe")
+print(dataset.describe())
